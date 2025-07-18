@@ -7,7 +7,7 @@ type Options<T> = {
 
 const executeAction = async <T>({
   actionFn,
-  successMessage = "Успешно, происходит перенаправление",
+  successMessage = "The actions was successful",
 }: Options<T>): Promise<{ success: boolean; message: string }> => {
   try {
     await actionFn();
@@ -23,7 +23,7 @@ const executeAction = async <T>({
 
     return {
       success: false,
-      message: "Что-то пошло не так",
+      message: "An error has occurred during executing the action",
     };
   }
 };

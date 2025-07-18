@@ -10,7 +10,7 @@ export function MainProvider({ children }: PropsWithChildren<unknown>) {
       attribute="class"
       defaultTheme="light"
       disableTransitionOnChange
-      storageKey="teacoder-theme"
+      storageKey="theme"
     >
       {children}
       <ToastProvider />

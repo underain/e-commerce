@@ -9,6 +9,7 @@ import {
 import { MenuItem } from "@/shared/ui/menu-item";
 import { MenuList } from "@/shared/ui/menu-list";
 import ThemeSwitcher from "@/features/theme-switch/theme-switcher";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 
 const Header = () => {
   const data = [
@@ -69,7 +70,10 @@ const Header = () => {
           <div className="block md:hidden mr-4">
             <ResTopNavbar data={data} />
           </div>
-          <Link href="/" className="text-2xl lg:text-[32px] mr-3 lg:mr-10">
+          <Link
+            href="/"
+            className="text-2xl font-black lg:text-[32px] mr-3 lg:mr-10"
+          >
             LikeStore
           </Link>
         </div>
@@ -89,6 +93,18 @@ const Header = () => {
         </NavigationMenu>
         <div className="flex items-center gap-3">
           <ThemeSwitcher />
+          <Link
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 size-8"
+            href="/cart"
+          >
+            <FaShoppingCart />
+          </Link>
+          <Link
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 size-8"
+            href="/profile"
+          >
+            <FaUser />
+          </Link>
         </div>
       </div>
     </header>

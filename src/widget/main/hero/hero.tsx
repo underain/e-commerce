@@ -83,7 +83,7 @@ const Hero = () => {
               <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
                 <AnimatedCounter from={0} to={7} /> лет
               </span>
-              <span className="text-xs xl:text-base text-nowrap">на рынке</span>
+              <span className="text-xs xl:text-base text-nowrap">На рынке</span>
             </div>
           </motion.div>
         </section>
@@ -91,7 +91,7 @@ const Hero = () => {
           initial={{ y: "100px", opacity: 0, rotate: 10 }}
           whileInView={{ y: "0", opacity: 1, rotate: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 2.3, duration: 0.8 }}
+          transition={{ delay: 0, duration: 0.8 }}
           className="relative md:px-4 min-h-[448px] md:min-h-[428px] bg-cover bg-top xl:bg-[center_top_-1.6rem] bg-no-repeat bg-[url('/main/hero-res-homepage.png')] md:bg-[url('/main/hero-homepage.png')]"
         ></motion.section>
       </div>

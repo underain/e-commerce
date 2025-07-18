@@ -5,8 +5,11 @@ import Credentials from "next-auth/providers/credentials";
 import { signInSchema } from "../lib/schema";
 import db from "@/shared/prisma/db";
 
+const adapter = PrismaAdapter(db as any);
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(db),
+  debug: true,
+  adapter,
   providers: [
     Credentials({
       credentials: {
