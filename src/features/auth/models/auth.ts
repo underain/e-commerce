@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { signInSchema } from "../lib/schema";
@@ -8,7 +8,6 @@ import db from "@/shared/prisma/db";
 const adapter = PrismaAdapter(db as any);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  debug: true,
   adapter,
   providers: [
     Credentials({
