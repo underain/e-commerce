@@ -6,14 +6,14 @@ import { ToastProvider } from "./toast-provider";
 
 export function MainProvider({ children }: PropsWithChildren<unknown>) {
   return (
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="light"
-        disableTransitionOnChange
-        storageKey="teacoder-theme"
-      >
-        <ToastProvider />
-        {children}
-      </ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      disableTransitionOnChange
+      storageKey="teacoder-theme"
+    >
+      {children}
+      <ToastProvider />
+    </ThemeProvider>
   );
 }
