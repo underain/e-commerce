@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <main className="h-svh flex items-center justify-center">
+    <main className="h-svh flex items-center justify-center px-5">
       <SignInForm />
     </main>
   );

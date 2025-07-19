@@ -22,6 +22,7 @@ export default async function middleware(request: NextRequest) {
   const session = await getToken({
     req: request,
     secret: process.env.NEXTAUTH_SECRET,
+    secureCookie: process.env.NODE_ENV === "production",
   });
 
   const isAuthRoute = pathname.startsWith(ROUTES.public.auth);
@@ -48,7 +49,7 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Публичные роуты
-    "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$|auth).*)",
     "/api/:path*",
     "/auth/:path*",
     // Приватные роуты
