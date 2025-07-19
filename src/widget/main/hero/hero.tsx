@@ -18,7 +18,7 @@ const Hero = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className={cn([
-              "text-4xl font-bold lg:text-[64px] lg:leading-[64px] mb-5 lg:mb-8",
+              "text-4xl font-black lg:text-[64px] lg:leading-[64px] mb-5 lg:mb-8",
             ])}
           >
             Продаем технику, которая попадает в самое сердцe
@@ -32,8 +32,7 @@ const Hero = () => {
           >
             LikeStore — магазин самых доступных цен на смартфоны Apple. Мы
             радуем наших покупателей отличным качеством работы уже более 7-ми
-            лет и продолжаем это делать с огромным удовольствием. За время
-            работы было реализовано более 15000 смартфонов
+            лет и продолжаем это делать с огромным удовольствием.
           </motion.p>
           <motion.div
             initial={{ y: "100px", opacity: 0 }}
@@ -43,7 +42,7 @@ const Hero = () => {
           >
             <Link
               href="/catalog"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-10 px-6 has-[>svg]:px-4 hover:animate-pulse"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-10 px-6 has-[>svg]:px-4"
             >
               В каталог
             </Link>

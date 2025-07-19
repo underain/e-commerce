@@ -28,9 +28,6 @@ const SignInForm = () => {
           duration: 2000,
         });
       }
-      toast("Добро пожаловать", {
-        duration: 2000,
-      });
     } finally {
       setIsSubmitting(false);
     }

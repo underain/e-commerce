@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-
+import { getToken } from "next-auth/jwt";
 // Конфигурация роутов
 const ROUTES = {
   public: {
@@ -17,9 +17,12 @@ const ROUTES = {
   },
 };
 
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const session = request.cookies.get("authjs.session-token")?.value;
+  const session = await getToken({
+    req: request,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
 
   const isAuthRoute = pathname.startsWith(ROUTES.public.auth);
   const isPrivateRoute = Object.values(ROUTES.private).some((route) =>
