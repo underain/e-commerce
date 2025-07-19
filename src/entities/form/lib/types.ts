@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface AuthFormWrapperProps {
+export interface FormWrapperProps {
   title: string;
   description?: string;
   children: ReactNode;
@@ -9,4 +9,5 @@ export interface AuthFormWrapperProps {
     href: string;
     linkText: string;
   };
+  className?: string;
 }

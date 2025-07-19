@@ -8,6 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/shared/ui/card";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/shared/ui/breadcrumb";
 import { Input } from "@/shared/ui/input";
 import { Separator } from "@/shared/ui/separator";
 import Link from "next/link";
@@ -19,8 +27,19 @@ const Profile = async () => {
   const userData = await getUserProfile(session?.user.id);
 
   return (
-    <section className="w-full">
-      <Card className="max-w-md mx-auto">
+    <section className="max-w-[1440px] mx-auto p-5">
+      <Breadcrumb className="mb-5">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/">Главная</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Профиль</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+      <Card className="max-w-md w-full mx-auto">
         <CardHeader className="flex items-center justify-between">
           <CardTitle>
             <h1 className="text-center font-bold text-[clamp(22px,2vw,32px)]">

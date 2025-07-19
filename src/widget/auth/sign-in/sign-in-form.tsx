@@ -1,7 +1,7 @@
 "use client";
 import { signInSchema, SignInSchemaType } from "@/features/auth/lib/schema";
-import AuthFormWrapper from "@/features/auth/ui/auth-form-wrapper";
 import { onSubmit } from "@/features/auth/models/submit-login";
+import FormWrapper from "@/entities/form/form-wrapper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/shared/ui/button";
 import { useForm } from "react-hook-form";
@@ -34,7 +34,7 @@ const SignInForm = () => {
   };
 
   return (
-    <AuthFormWrapper
+    <FormWrapper
       title="Вход в аккаунт"
       description="Введите свои данные ниже для входа в аккаунт"
       footerLink={{
@@ -103,7 +103,7 @@ const SignInForm = () => {
           {isSubmitting ? "Вход..." : "Войти"}
         </Button>
       </form>
-    </AuthFormWrapper>
+    </FormWrapper>
   );
 };
 

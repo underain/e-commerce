@@ -1,7 +1,7 @@
 "use client";
 import { signUpSchema, SignUpSchemaType } from "@/features/auth/lib/schema";
-import AuthFormWrapper from "@/features/auth/ui/auth-form-wrapper";
 import { onSubmit } from "@/features/auth/models/submit-register";
+import FormWrapper from "@/entities/form/form-wrapper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { Button } from "@/shared/ui/button";
@@ -41,7 +41,7 @@ const SignUpForm = () => {
     }
   };
   return (
-    <AuthFormWrapper
+    <FormWrapper
       title="Регистрация"
       description="Заполните форму ниже для регистрации на сайте"
       footerLink={{
@@ -135,7 +135,7 @@ const SignUpForm = () => {
           {isSubmitting ? "Регистрация..." : "Зарегистрироваться"}
         </Button>
       </form>
-    </AuthFormWrapper>
+    </FormWrapper>
   );
 };
 

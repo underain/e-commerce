@@ -7,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 enum Role {
   admin
   user
@@ -119,14 +118,14 @@ model MemoryOption {
 model Product {
   id             String   @id @default(cuid())
   name           String
-  description    String @db.Text
-  bestseller     Boolean @default(false)
+  description    String   @db.Text
+  bestseller     Boolean  @default(false)
   picture        String
   article        Int
-  categoryId     String  @map("category_id")
+  categoryId     String   @map("category_id")
   category       Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  brandId        String  @map("brand_id")
-  brand          Brand   @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  brandId        String   @map("brand_id")
+  brand          Brand    @relation(fields: [brandId], references: [id], onDelete: Cascade)
   variants       ProductVariant[]
   specifications ProductsSpecification[]
 

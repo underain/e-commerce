@@ -1,14 +1,14 @@
-import Profile from "@/widget/profile/profile";
+import Admin from "@/widget/admin/admin";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Профиль",
+  title: "Админ панель",
 };
 
 const page = async () => {
   return (
-    <main className="px-5">
-      <Profile />
+    <main>
+      <Admin />
     </main>
   );
 };

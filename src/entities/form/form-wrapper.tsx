@@ -9,16 +9,18 @@ import {
   CardTitle,
 } from "@/shared/ui/card";
 import { Separator } from "@/shared/ui/separator";
-import { AuthFormWrapperProps } from "../lib/types";
+import { FormWrapperProps } from "./lib/types";
+import { cn } from "@/shared/lib/utils";
 
-const AuthFormWrapper = ({
+const FormWrapper = ({
   title,
   description,
   children,
   footerLink,
-}: AuthFormWrapperProps) => {
+  className,
+}: FormWrapperProps) => {
   return (
-    <Card className="mx-auto w-full max-w-md">
+    <Card className={cn("mx-auto w-full max-w-md", className && className)}>
       <CardHeader className="space-y-2 text-center">
         <CardTitle>
           <h1 className="text-3xl font-bold">{title}</h1>
@@ -42,4 +44,4 @@ const AuthFormWrapper = ({
   );
 };
 
-export default AuthFormWrapper;
+export default FormWrapper;
