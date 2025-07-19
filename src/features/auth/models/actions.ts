@@ -23,12 +23,19 @@ const signUp = async (data: SignUpData) => {
       if (existingUser)
         throw new Error("Пользователь с таким email уже существует");
 
-      await db.user.create({
-        data: {
-          name: validatedData.name,
-          email: validatedData.email.toLowerCase(),
-          password: hashedPassword,
-        },
+      await db.$transaction(async (prisma) => {
+        const user = await prisma.user.create({
+          data: {
+            name: validatedData.name,
+            email: validatedData.email.toLowerCase(),
+            password: hashedPassword,
+          },
+        });
+        await prisma.cart.create({
+          data: {
+            userId: user.id,
+          },
+        });
       });
     },
     successMessage: "Успешная регистрация",

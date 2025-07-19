@@ -48,6 +48,8 @@ export default async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     // Публичные роуты
+    "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
+    "/api/:path*",
     "/auth/:path*",
     // Приватные роуты
     "/profile/:path*",
