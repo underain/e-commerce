@@ -30,7 +30,7 @@ const ProductCard = ({ productData, variants }: IProductData) => {
     <Card className="relative max-w-xs w-full space-y-4">
       <CardHeader>
         {productData.bestseller && (
-          <div className="bg-foreground text-background w-fit rounded-lg font-bold relative z-50 h-6 lg:h-9 px-4 py-2">
+          <div className="bg-foreground text-background w-fit rounded-lg font-bold relative z-50 h-9 px-4 py-2">
             Хит
           </div>
         )}

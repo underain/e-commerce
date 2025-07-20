@@ -51,7 +51,7 @@ const ServicesSection = () => {
       initial={{ y: "100px", opacity: 0 }}
       whileInView={{ y: "0", opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ delay: 1.2, duration: 0.6 }}
+      transition={{ delay: 0.6, duration: 0.6 }}
       className="flex flex-col gap-5 px-5 mt-5 w-full md:flex-row"
     >
       <Card className="w-full mb-5 pb-0 space-y-12 flex flex-col justify-between md:mb-0 md:w-1/3">
