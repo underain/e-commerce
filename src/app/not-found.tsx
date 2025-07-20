@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 const page = () => {
   const router = useRouter();
   return (
-    <main className="h-svh flex items-center justify-center">
+    <main className="px-5 my-10">
       <Card className="w-fit mx-auto my-5">
         <CardHeader>
           <CardTitle className="text-5xl lg:text-9xl font-black text-center">
@@ -22,7 +22,7 @@ const page = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="text-center">
-          <CardDescription className="text-xl">
+          <CardDescription className="text-base lg:text-xl">
             Страница не найдена, попробуйте снова
           </CardDescription>
           <CardAction className="my-5">
