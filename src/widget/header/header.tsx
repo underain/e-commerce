@@ -10,6 +10,7 @@ import { MenuItem } from "@/shared/ui/menu-item";
 import { MenuList } from "@/shared/ui/menu-list";
 import ThemeSwitcher from "@/features/theme-switch/theme-switcher";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { SiHearth } from "react-icons/si";
 
 const Header = () => {
   const data = [
@@ -73,8 +74,9 @@ const Header = () => {
           </div>
           <Link
             href="/"
-            className="text-2xl font-black lg:text-[32px] mr-3 lg:mr-10"
+            className="text-2xl font-black flex items-center gap-2 lg:text-[32px] mr-3 lg:mr-10"
           >
+            <SiHearth />
             LikeStore
           </Link>
         </div>

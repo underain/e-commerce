@@ -4,6 +4,7 @@ import { Separator } from "@/shared/ui/separator";
 import LayoutSpacing from "./layout-spacing";
 import LinksSection from "./links-section";
 import Link from "next/link";
+import { SiHearth } from "react-icons/si";
 
 const socialsData = [
   {
@@ -38,8 +39,9 @@ const Footer = () => {
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="cursor-pointer text-[28px] lg:text-[32px] mb-6 font-black"
+              className="cursor-pointer flex items-center gap-2 text-[28px] lg:text-[32px] mb-6 font-black"
             >
+              <SiHearth />
               LikeStore
             </h2>
             <p className="text-sm mb-9">
