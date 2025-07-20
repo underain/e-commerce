@@ -9,37 +9,52 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface IProductCard {
-  productCard: {
-    id: string;
-    image: string;
-    name: string;
+interface IProductData {
+  variants: {
     price: number;
+  }[];
+  productData: {
+    name: string;
+    id: string;
     description: string;
     bestseller: boolean;
+    picture: string;
+    article: number;
+    categoryId: string;
+    brandId: string;
   };
 }
 
-const ProductCard = () => {
+const ProductCard = ({ productData, variants }: IProductData) => {
   return (
-    <Card className="max-w-md w-full space-y-4">
+    <Card className="relative max-w-xs w-full space-y-4">
       <CardHeader>
-        <Image src="/" alt="name" />
+        {productData.bestseller && (
+          <div className="bg-foreground text-background w-fit rounded-lg font-bold relative z-50 h-6 lg:h-9 px-4 py-1 lg:py-2">
+            Хит
+          </div>
+        )}
+        <Image
+          className="mx-auto relative z-20 transition-all duration-700 scale-100 hover:scale-110"
+          src={productData.picture}
+          alt={productData.name}
+          width={200}
+          height={200}
+        />
       </CardHeader>
-      <CardContent>
-        <CardTitle>
-          `MacBook Air 13,6 2022 (M2 8c CPU/8c GPU 8/256 gb)
-        </CardTitle>
-        <CardDescription>
-          MacBook Air 13,6 2022 (M2 8c CPU/8c GPU 8/256 gb) Представляем вам
-          MacBook Air 13.6 2022 с процессором M2, который обеспечит вам
-          невероятную производительность и эффективность.
+      <CardContent className="space-y-4">
+        <CardTitle className="font-bold">{productData.name}</CardTitle>
+        <CardDescription className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          {productData.description}
         </CardDescription>
         <Link
-          className="before:absolute before:inset-0 before:z-0"
-          href={`/product/{id}`}
+          className="before:absolute before:inset-0 before:z-0 font-bold text-xl"
+          href={`/product/${productData.id}`}
         >
-          69 000$
+          {variants[0].price >= 1000
+            ? variants[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            : variants[0].price.toString()}
+          ₽
         </Link>
       </CardContent>
     </Card>
