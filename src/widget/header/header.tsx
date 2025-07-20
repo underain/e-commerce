@@ -21,28 +21,28 @@ const Header = () => {
         {
           id: 11,
           label: "Смартфоны",
-          url: "/catalog?categoty=phones",
+          url: "/catalog?category=Смартфоны",
           description:
             "Мощные, стильные и технологичные — выбирайте среди лучших моделей с инновационными функциями.",
         },
         {
           id: 12,
           label: "Планшеты",
-          url: "/catalog?categoty=tablets",
+          url: "/catalog?category=Планшеты",
           description:
             "Удобные, производительные и компактные — идеальные помощники для работы, творчества и развлечений.",
         },
         {
           id: 13,
           label: "Ноутбкуки",
-          url: "/catalog?categoty=notebooks",
+          url: "/catalog?category=Ноутбкуки",
           description:
             "Высокая производительность, элегантный дизайн и надежность для работы, учебы и игр.",
         },
         {
           id: 14,
           label: "Аксессуары",
-          url: "/catalog?categoty=accessories",
+          url: "/catalog?category=Аксессуары",
           description:
             "Дополните ваши устройства стильными и функциональными аксессуарами для максимального комфорта.",
         },
@@ -63,6 +63,7 @@ const Header = () => {
       children: [],
     },
   ];
+
   return (
     <header className="w-full bg-background">
       <div className="header-wrapper mx-auto max-w-[1440px] flex items-center justify-between px-5 py-3">
