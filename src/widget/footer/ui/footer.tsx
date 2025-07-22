@@ -41,7 +41,7 @@ const Footer = () => {
               }}
               className="cursor-pointer flex items-center gap-2 text-[28px] lg:text-[32px] mb-6 font-black"
             >
-              <SiHearth />
+              <SiHearth className="-rotate-30" />
               LikeStore
             </h2>
             <p className="text-sm mb-9">

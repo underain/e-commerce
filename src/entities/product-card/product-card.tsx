@@ -10,24 +10,19 @@ import Link from "next/link";
 import React from "react";
 
 interface IProductData {
-  variants: {
-    price: number;
-  }[];
   productData: {
-    name: string;
     id: string;
+    name: string;
     description: string;
     bestseller: boolean;
     picture: string;
-    article: number;
-    categoryId: string;
-    brandId: string;
+    price: number;
   };
 }
 
-const ProductCard = ({ productData, variants }: IProductData) => {
+const ProductCard = ({ productData }: IProductData) => {
   return (
-    <Card className="relative max-w-xs w-full space-y-4">
+    <Card className="relative justify-between max-w-xs w-full space-y-4">
       <CardHeader>
         {productData.bestseller && (
           <div className="bg-foreground text-background w-fit rounded-lg font-bold relative z-50 h-9 px-4 py-2">
@@ -51,9 +46,9 @@ const ProductCard = ({ productData, variants }: IProductData) => {
           className="before:absolute before:inset-0 before:z-0 font-bold text-xl"
           href={`/product/${productData.id}`}
         >
-          {variants[0].price >= 1000
-            ? variants[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-            : variants[0].price.toString()}
+          {productData.price >= 1000
+            ? productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            : productData.price.toString()}
           ₽
         </Link>
       </CardContent>

@@ -8,15 +8,8 @@ type Product = {
   name: string;
   description: string;
   bestseller: boolean;
-  article: number;
   picture: string;
-  categoryId: string;
-  brandId: string;
-  variants: {
-    price: number;
-    id?: string;
-    memoryId?: string;
-  }[];
+  price: number;
 };
 
 type BestsellerProductsProps = {
@@ -34,11 +27,7 @@ const BestsellerProducts = ({ bestseller }: BestsellerProductsProps) => {
     >
       <div className="grid gap-5 grid-cols-2 lg:grid-cols-4">
         {bestseller.map((item) => (
-          <ProductCard
-            key={item.id}
-            productData={item}
-            variants={item.variants}
-          />
+          <ProductCard key={item.id} productData={item} />
         ))}
       </div>
 

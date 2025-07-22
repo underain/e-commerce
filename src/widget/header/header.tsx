@@ -76,7 +76,7 @@ const Header = () => {
             href="/"
             className="text-2xl font-black flex items-center gap-2 lg:text-[32px] mr-3 lg:mr-10"
           >
-            <SiHearth />
+            <SiHearth className="-rotate-30" />
             LikeStore
           </Link>
         </div>

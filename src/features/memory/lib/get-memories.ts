@@ -1,5 +1,5 @@
 import db from "@/shared/prisma/db";
 
-export async function getMemory() {
+export async function getMemories() {
   return await db.memoryOption.findMany();
 }

@@ -3,9 +3,9 @@ import React from "react";
 import CategoryForm from "./category-form";
 import BrandForm from "./brand-form";
 import MemoryForm from "./memory-form";
-import { getBrand } from "@/features/brand/lib/get-brand";
-import { getCategory } from "@/features/category/lib/get-category";
-import { getMemory } from "@/features/memory/lib/get-memory";
+import { getBrands } from "@/features/brand/lib/get-brands";
+import { getCategories } from "@/features/category/lib/get-categories";
+import { getMemories } from "@/features/memory/lib/get-memories";
 import { ProductForm } from "./product-form";
 import {
   Breadcrumb,
@@ -17,10 +17,10 @@ import {
 } from "@/shared/ui/breadcrumb";
 
 const Admin = async () => {
-  const [brand, category, memory] = await Promise.all([
-    getBrand(),
-    getCategory(),
-    getMemory(),
+  const [brands, categories, memories] = await Promise.all([
+    getBrands(),
+    getCategories(),
+    getMemories(),
   ]);
   return (
     <section className="max-w-[1440px] mx-auto p-5">
@@ -51,9 +51,9 @@ const Admin = async () => {
         </TabsContent>
         <TabsContent value="product">
           <ProductForm
-            brands={brand}
-            categories={category}
-            memoryOptions={memory}
+            brands={brands}
+            categories={categories}
+            memoryOptions={memories}
           />
         </TabsContent>
         <TabsContent value="brand">
