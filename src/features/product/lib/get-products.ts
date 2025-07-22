@@ -9,7 +9,7 @@ interface GetProductsParams {
 
 export async function getProducts(params: GetProductsParams = {}) {
   const { category, brand, memory, page = 1 } = params;
-  const itemsPerPage = 1;
+  const itemsPerPage = 6;
   const skip = (page - 1) * itemsPerPage;
 
   const where = {

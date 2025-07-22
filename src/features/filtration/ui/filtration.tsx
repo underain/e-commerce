@@ -21,7 +21,7 @@ const Filtration = async () => {
 
   return (
     <aside className="w-full md:max-w-xs">
-      <Card className="bg-sidebar-primary-foreground w-full md:max-w-xs">
+      <Card className="w-full md:max-w-xs">
         <CardHeader className="flex items-center justify-between">
           <CardTitle className="font-bold text-xl">Фильтры</CardTitle>
           <GiSettingsKnobs />
@@ -89,7 +89,6 @@ const Filtration = async () => {
             href="/catalog"
           >
             Сбросить фильтры
-            
           </Link>
         </CardContent>
       </Card>

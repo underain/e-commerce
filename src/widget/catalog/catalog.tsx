@@ -24,8 +24,6 @@ const Catalog = async ({ searchParams }: CatalogProps) => {
   const page = (await searchParams).page
     ? parseInt((await searchParams).page!)
     : 1;
-  const params = await searchParams;
-
   const { products, totalCount, totalPages } = await getProducts({
     category: (await searchParams).category,
     brand: (await searchParams).brand,
@@ -56,7 +54,7 @@ const Catalog = async ({ searchParams }: CatalogProps) => {
           </div>
         ) : (
           <p className="w-full flex items-center justify-center font-bold text-2xl">
-            Товаров с такмими фильтрами еще нет
+            Товаров с такими фильтрами еще нет
           </p>
         )}
       </div>
