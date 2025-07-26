@@ -14,7 +14,6 @@ interface ProductProps {
 
 const Product = async ({ id }: ProductProps) => {
   const product = await getProductById(id);
-  console.log(product);
 
   if (!product) {
     return notFound();
