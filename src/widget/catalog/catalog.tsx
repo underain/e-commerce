@@ -19,17 +19,16 @@ interface CatalogProps {
     memory?: string;
   }>;
 }
-
 const Catalog = async ({ searchParams }: CatalogProps) => {
-  const page = (await searchParams).page
-    ? parseInt((await searchParams).page!)
-    : 1;
-  const { products, totalCount, totalPages } = await getProducts({
-    category: (await searchParams).category,
-    brand: (await searchParams).brand,
-    memory: (await searchParams).memory,
-    page,
-  });
+  const { page = "1", category, brand, memory } = await searchParams;
+  const currentPage = parseInt(page) || 1;
+  const filters = {
+    category,
+    brand,
+    memory,
+    page: currentPage,
+  };
+  const { products, totalCount, totalPages } = await getProducts(filters);
 
   return (
     <section className="max-w-[1440px] mx-auto p-5">
@@ -44,6 +43,12 @@ const Catalog = async ({ searchParams }: CatalogProps) => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+      <h1 className="text-2xl font-black lg:text-3xl mb-5 lg:mb-8 relative w-fit mt-10">
+        Каталог
+        <b className="text-base text-accent-foreground absolute -right-5 -top-3">
+          {totalCount}
+        </b>
+      </h1>
       <div className="flex flex-col gap-5 justify-between w-full md:flex-row">
         <Filtration />
         {products.length ? (
@@ -60,7 +65,10 @@ const Catalog = async ({ searchParams }: CatalogProps) => {
       </div>
       {totalPages > 1 && (
         <div className="my-5">
-          <CatalogPagination searchParams={searchParams} totalPages={totalPages} />
+          <CatalogPagination
+            searchParams={searchParams}
+            totalPage={totalPages}
+          />
         </div>
       )}
     </section>

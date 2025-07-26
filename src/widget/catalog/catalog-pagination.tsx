@@ -15,12 +15,14 @@ interface CatalogProps {
     brand?: string;
     memory?: string;
   }>;
-  totalPages: number;
+  totalPage: number;
+
 }
 
 const CatalogPagination = async ({
   searchParams,
-  totalPages,
+  totalPage,
+
 }: CatalogProps) => {
   const page = (await searchParams).page
     ? parseInt((await searchParams).page!)
@@ -51,7 +53,7 @@ const CatalogPagination = async ({
         </PaginationItem>
 
         {Array.from({ length: 3 }, (_, i) => page - 1 + i)
-          .filter((p) => p > 1 && p < totalPages)
+          .filter((p) => p > 1 && p < totalPage)
           .map((pageNum) => (
             <PaginationItem key={pageNum}>
               <PaginationLink
@@ -63,27 +65,27 @@ const CatalogPagination = async ({
             </PaginationItem>
           ))}
 
-        {page < totalPages - 3 && (
+        {page < totalPage - 3 && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
         )}
 
-        {totalPages > 1 && (
+        {totalPage > 1 && (
           <PaginationItem>
             <PaginationLink
-              href={generatePageUrl(totalPages)}
-              isActive={totalPages === page}
+              href={generatePageUrl(totalPage)}
+              isActive={totalPage === page}
             >
-              {totalPages}
+              {totalPage}
             </PaginationLink>
           </PaginationItem>
         )}
 
         <PaginationItem>
           <PaginationNext
-            href={generatePageUrl(Math.min(totalPages, page + 1))}
-            aria-disabled={page >= totalPages}
+            href={generatePageUrl(Math.min(totalPage, page + 1))}
+            aria-disabled={page >= totalPage}
           />
         </PaginationItem>
       </PaginationContent>

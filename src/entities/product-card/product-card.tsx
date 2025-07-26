@@ -46,10 +46,7 @@ const ProductCard = ({ productData }: IProductData) => {
           className="before:absolute before:inset-0 before:z-0 font-bold text-xl"
           href={`/product/${productData.id}`}
         >
-          {productData.price >= 1000
-            ? productData.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-            : productData.price.toString()}
-          ₽
+          {productData.price.toLocaleString("ru-RU")}₽
         </Link>
       </CardContent>
     </Card>
