@@ -1,10 +1,10 @@
 import Product from "@/widget/product/product";
 import React from "react";
 
-const page = ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <main>
-      <Product id={params.id} />
+      <Product id={(await params).id} />
     </main>
   );
 };
