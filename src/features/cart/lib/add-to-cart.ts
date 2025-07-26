@@ -1,13 +1,14 @@
 "use server";
-
 import { auth } from "@/features/auth/models/auth";
 import db from "@/shared/prisma/db";
+import { AuthError } from "next-auth";
+import { CartError } from "./errors";
 
 export async function addToCart(variantId: string) {
   const session = await auth();
 
   if (!session) {
-    throw new Error("Для добавления товара в корзину авторизуйтесь");
+    throw new AuthError("Для добавления товара в корзину авторизуйтесь");
   }
 
   await db.$transaction(async (tx) => {
@@ -21,7 +22,7 @@ export async function addToCart(variantId: string) {
     });
 
     if (existingProduct) {
-      throw new Error("Товар уже в корзине");
+      throw new CartError("Товар уже в корзине");
     }
 
     const cart = await tx.cart.findUnique({
@@ -30,7 +31,7 @@ export async function addToCart(variantId: string) {
     });
 
     if (!cart) {
-      throw new Error("Корзина не найдена");
+      throw new CartError("Корзина не найдена");
     }
 
     await tx.cartProduct.create({
