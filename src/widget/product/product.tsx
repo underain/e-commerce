@@ -28,13 +28,13 @@ const Product = async ({ id }: ProductProps) => {
   };
 
   return (
-    <section className="max-w-[1440px] w-full mx-auto p-5">
+    <main className="max-w-[1440px] w-full mx-auto p-5">
       <ProductBreadcrumbs
         productName={product.name}
         categoryName={product.category}
-      />
-      <div className="flex flex-col gap-5 justify-between md:flex-row">
-        <Card className="h-fit">
+      />    
+      <section className="flex flex-col gap-5 justify-between md:flex-row">
+        <Card className="h-fit max-w-md w-full">
           <CardContent>
             <Image
               className="transition-all duration-700 scale-100 hover:scale-105 mx-auto"
@@ -57,8 +57,8 @@ const Product = async ({ id }: ProductProps) => {
             <ProductSpecifications specifications={product.specifications} />
           </CardContent>
         </Card>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

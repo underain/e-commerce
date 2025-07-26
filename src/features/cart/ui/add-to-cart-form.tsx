@@ -1,9 +1,9 @@
 "use client";
 import { addToCart } from "@/features/cart/lib/add-to-cart";
+import { useRouter } from "next/navigation";
 import { Button } from "@/shared/ui/button";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 const AddToCartForm = ({ variantId }: { variantId: string }) => {
   const router = useRouter();
