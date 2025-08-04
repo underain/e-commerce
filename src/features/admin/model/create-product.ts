@@ -14,8 +14,8 @@ type ProductData = {
     name: string;
     description: string;
   }>;
-  variants: Array<{
-    memoryId: string;
+  variants?: Array<{
+    memoryId?: string | null;
     price: number;
   }>;
 };
@@ -27,21 +27,28 @@ export async function createProduct(data: ProductData) {
       db.brand.findUnique({ where: { id: data.brandId } }),
     ]);
 
-    if (!categoryExists) {
-      throw new Error("Категория не найдена");
-    }
+    if (!categoryExists) throw new Error("Категория не найдена");
+    if (!brandExists) throw new Error("Бренд не найден");
 
-    if (!brandExists) {
-      throw new Error("Бренд не найден");
-    }
+    if (data.variants && data.variants.length > 0) {
+      const memoryIds = data.variants
+        .map(v => v.memoryId)
+        .filter(Boolean) as string[];
+      
+      if (memoryIds.length > 0) {
+        const existingMemories = await db.memoryOption.findMany({
+          where: { id: { in: memoryIds } },
+          select: { id: true }
+        });
 
-    const memoryIds = data.variants.map((v) => v.memoryId);
-    const existingMemories = await db.memoryOption.findMany({
-      where: { id: { in: memoryIds } },
-    });
+        const missingIds = memoryIds.filter(id => 
+          !existingMemories.some(m => m.id === id)
+        );
 
-    if (existingMemories.length !== memoryIds.length) {
-      throw new Error("Один или несколько вариантов памяти не найдены");
+        if (missingIds.length > 0) {
+          throw new Error(`Не найдены варианты памяти с ID: ${missingIds.join(', ')}`);
+        }
+      }
     }
 
     const product = await db.$transaction(async (prisma) => {
@@ -59,7 +66,7 @@ export async function createProduct(data: ProductData) {
 
       if (data.specifications.length > 0) {
         await prisma.productsSpecification.createMany({
-          data: data.specifications.map((spec) => ({
+          data: data.specifications.map(spec => ({
             name: spec.name,
             description: spec.description,
             productId: newProduct.id,
@@ -67,14 +74,18 @@ export async function createProduct(data: ProductData) {
         });
       }
 
-      if (data.variants.length > 0) {
-        await prisma.productVariant.createMany({
-          data: data.variants.map((variant) => ({
-            productId: newProduct.id,
-            memoryId: variant.memoryId,
-            price: variant.price,
-          })),
-        });
+      if (data.variants && data.variants.length > 0) {
+        await Promise.all(
+          data.variants.map(variant =>
+            prisma.productVariant.create({
+              data: {
+                productId: newProduct.id,
+                ...(variant.memoryId ? { memoryId: variant.memoryId } : {}),
+                price: variant.price,
+              },
+            })
+          )
+        );
       }
 
       return newProduct;

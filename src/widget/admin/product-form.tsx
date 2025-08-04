@@ -37,10 +37,10 @@ export const ProductForm = ({
     handleSubmit,
     setValue,
     formState: { errors },
-    reset,
   } = useForm<ProductSchemaType>({
     resolver: zodResolver(productSchema),
     defaultValues: {
+      bestseller: false,
       specifications: [{ name: "", description: "" }],
       variants: [{ memoryId: "", price: 0 }],
     },
@@ -65,6 +65,7 @@ export const ProductForm = ({
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [supportMemory, setSupportMemory] = useState<boolean>(false);
 
   const onSubmit = async (data: ProductSchemaType): Promise<void> => {
     setIsSubmitting(true);
@@ -216,6 +217,7 @@ export const ProductForm = ({
             <Checkbox
               id="bestseller"
               {...register("bestseller")}
+              defaultChecked={false}
               onCheckedChange={(checked) =>
                 setValue("bestseller", Boolean(checked))
               }
@@ -306,35 +308,41 @@ export const ProductForm = ({
 
         <div className="space-y-4">
           <h3 className="text-sm font-medium">Варианты товара</h3>
+
           {variantFields.map((field, index) => (
             <div
               key={field.id}
               className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end"
             >
-              <div className="flex flex-col">
-                <label className="mb-3 text-sm font-medium">Объем памяти</label>
-                <Select
-                  onValueChange={(value) =>
-                    setValue(`variants.${index}.memoryId`, value)
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Выберите объем памяти" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {memoryOptions.map((option) => (
-                      <SelectItem key={option.id} value={option.id}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errors.variants?.[index]?.memoryId && (
-                  <p className="mt-1 text-sm text-destructive">
-                    {errors.variants[index]?.memoryId?.message}
-                  </p>
-                )}
-              </div>
+              {supportMemory && (
+                <div className="flex flex-col">
+                  <label className="mb-3 text-sm font-medium">
+                    Объем памяти
+                  </label>
+                  <Select
+                    onValueChange={(value) =>
+                      setValue(`variants.${index}.memoryId`, value)
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите объем памяти" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {memoryOptions.map((option) => (
+                        <SelectItem key={option.id} value={option.id}>
+                          {option.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.variants?.[index]?.memoryId && (
+                    <p className="mt-1 text-sm text-destructive">
+                      {errors.variants[index]?.memoryId?.message}
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="flex flex-col">
                 <label className="mb-3 text-sm font-medium">Цена</label>
                 <Input
@@ -350,6 +358,7 @@ export const ProductForm = ({
                   </p>
                 )}
               </div>
+
               <Button
                 type="button"
                 variant="destructive"
@@ -360,13 +369,27 @@ export const ProductForm = ({
               </Button>
             </div>
           ))}
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={() => appendVariant({ memoryId: "", price: 0 })}
-          >
-            Добавить вариант
-          </Button>
+
+          <div className="flex items-center gap-4">
+            <Checkbox
+              id="support"
+              checked={supportMemory}
+              onCheckedChange={(checked) => setSupportMemory(Boolean(checked))}
+            />
+            <label htmlFor="support" className="text-sm font-medium">
+              Поддерживает память
+            </label>
+          </div>
+
+          {supportMemory && (
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => appendVariant({ memoryId: "", price: 0 })}
+            >
+              Добавить вариант
+            </Button>
+          )}
         </div>
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>

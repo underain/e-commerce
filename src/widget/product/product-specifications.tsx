@@ -18,7 +18,7 @@ const ProductSpecifications = ({
   specifications,
 }: ProductSpecificationsProps) => {
   return (
-    <Accordion type="single" collapsible  defaultValue="specifications">
+    <Accordion type="single" collapsible defaultValue="specifications">
       <AccordionItem value="specifications">
         <AccordionTrigger className="text-left mb-3 font-bold text-base">
           Характеристики

@@ -32,9 +32,9 @@ const Product = async ({ id }: ProductProps) => {
       <ProductBreadcrumbs
         productName={product.name}
         categoryName={product.category}
-      />    
+      />
       <section className="flex flex-col gap-5 justify-between md:flex-row">
-        <Card className="h-fit max-w-md w-full">
+        <Card className="h-fit w-full md:max-w-md">
           <CardContent>
             <Image
               className="transition-all duration-700 scale-100 hover:scale-105 mx-auto"

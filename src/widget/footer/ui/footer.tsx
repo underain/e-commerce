@@ -1,7 +1,6 @@
 "use client";
 import { FaFacebookF, FaGithub, FaInstagram, FaYoutube } from "react-icons/fa";
 import { Separator } from "@/shared/ui/separator";
-import LayoutSpacing from "./layout-spacing";
 import LinksSection from "./links-section";
 import Link from "next/link";
 import { SiHearth } from "react-icons/si";
@@ -76,7 +75,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <LayoutSpacing />
     </footer>
   );
 };

@@ -1,6 +1,5 @@
 import db from "@/shared/prisma/db";
 
-
 export async function getProductById(id: string) {
   const product = await db.product.findUnique({
     where: { id },
@@ -17,41 +16,41 @@ export async function getProductById(id: string) {
           price: true,
           memory: {
             select: {
-              label: true
-            }
-          }
-        }
+              label: true,
+            },
+          },
+        },
       },
       specifications: {
         select: {
           id: true,
           name: true,
-          description: true
-        }
+          description: true,
+        },
       },
       category: {
         select: {
-          name: true
-        }
+          name: true,
+        },
       },
       brand: {
         select: {
-          name: true
-        }
-      }
-    }
+          name: true,
+        },
+      },
+    },
   });
 
   if (!product) return null;
 
   return {
     ...product,
-    category: product.category?.name || '',
-    brand: product.brand?.name || '',
-    variants: product.variants.map(variant => ({
+    category: product.category?.name || "",
+    brand: product.brand?.name || "",
+    variants: product.variants.map((variant) => ({
       id: variant.id,
       price: variant.price,
-      memory: variant.memory.label
-    }))
+      memory: variant.memory?.label,
+    })),
   };
 }

@@ -21,10 +21,6 @@ const AddToCartForm = ({ variantId }: { variantId: string }) => {
         if (error.name === "AuthError") {
           toast.error("Требуется авторизация", {
             description: error.message,
-            action: {
-              label: "Войти",
-              onClick: () => router.push("/login"),
-            },
           });
         } else {
           toast.error("Ошибка", {

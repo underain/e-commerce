@@ -26,7 +26,7 @@ export const specificationSchema = z.object({
 });
 
 export const variantSchema = z.object({
-  memoryId: z.string().min(1, "Выберите память"),
+  memoryId: z.string().optional(),
   price: z.number().min(1, "Цена должна быть больше 0"),
 });
 
@@ -35,7 +35,7 @@ export const productSchema = z.object({
   description: z.string().min(1, "Обязательное поле"),
   article: z.number().min(1, "Артикул должен быть больше 0"),
   picture: z.string(),
-  bestseller: z.boolean(),
+  bestseller: z.boolean().optional(),
   categoryId: z.string().min(1, "Выберите категорию"),
   brandId: z.string().min(1, "Выберите бренд"),
   specifications: z

@@ -14,11 +14,12 @@ interface ProductVariantProps {
   variants: {
     id: string;
     price: number;
-    memory: string;
+    memory: string | undefined;
   }[];
 }
 
 const ProductVariant = ({ variants }: ProductVariantProps) => {
+  const hasMemory = variants.some((v) => v.memory !== undefined);
   const [selectedVariantId, setSelectedVariantId] = useState(
     variants[0]?.id || ""
   );
@@ -37,20 +38,28 @@ const ProductVariant = ({ variants }: ProductVariantProps) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="font-bold">Память</h3>
+      <h3 className="font-bold"> {hasMemory ? "Память" : "Цена"} </h3>
       <div className="flex items-center gap-4">
-        <Select value={selectedVariantId} onValueChange={handleVariantChange}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Выберите объем памяти" />
-          </SelectTrigger>
-          <SelectContent>
-            {variants.map((variant) => (
-              <SelectItem key={variant.id} value={variant.id}>
-                {variant.memory}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        {hasMemory ? (
+          <Select value={selectedVariantId} onValueChange={handleVariantChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Выберите вариант" />
+            </SelectTrigger>
+            <SelectContent>
+              {variants.map((variant) => (
+                <SelectItem key={variant.id} value={variant.id}>
+                  {variant.memory || "Без памяти"}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : (
+          hasMemory && (
+            <div className="w-[180px] text-sm text-muted-foreground">
+              Вариант товара
+            </div>
+          )
+        )}
 
         <div className="text-nowrap text-xl font-bold">
           <AnimatedCounter
@@ -62,9 +71,12 @@ const ProductVariant = ({ variants }: ProductVariantProps) => {
         </div>
       </div>
 
-      <div className="text-sm text-muted-foreground">
-        Выбран: <b>{selectedVariant.memory}</b>
-      </div>
+      {hasMemory && (
+        <div className="text-sm text-muted-foreground">
+          Выбран: <b>{selectedVariant.memory || "не указано"}</b>
+        </div>
+      )}
+
       <AddToCartForm variantId={selectedVariantId} />
     </div>
   );
