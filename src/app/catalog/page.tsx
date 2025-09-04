@@ -1,6 +1,6 @@
 import Catalog from "@/widget/catalog/catalog";
 import { Metadata } from "next";
-
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Каталог",
 };
